@@ -1,5 +1,6 @@
 import * as dotenv from 'dotenv';
 import * as jwt from 'jsonwebtoken';
+import * as nodemailer from 'nodemailer';
 
 import User from '../models/user';
 import BaseCtrl from './base';
@@ -15,6 +16,40 @@ export default class UserCtrl extends BaseCtrl {
         const token = jwt.sign({ user: user }, process.env.SECRET_TOKEN); // , { expiresIn: 10 } seconds
         res.status(200).json({ token: token });
       });
+    });
+  }
+  forgot = (req, res) => {
+    this.model.findOne({ email: req.body.email }, (err, user) => {
+      if (!user) { return res.sendStatus(403); }
+      console.log('emailId: ' + user );
+      try {
+
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'dotnet@mailtest.radixweb.net',
+          pass: 'deep70'
+        }
+      });
+      const mailOptions = {
+        from: 'dotnet@mailtest.radixweb.net',
+        to: user.email,
+        subject: 'New Generated Password for User',
+        text: `Dear User,
+               This is your newly generated password from system.
+               Password: ` + 'PSS233423'
+      };
+      console.log('mailOptions: ' + mailOptions );
+      res.status(200).json({ message: 'Password has been sent.' });
+
+    } catch (error) {
+      console.log('error: ' + error );
+    }
+      // user.comparePassword(req.body.password, (error, isMatch) => {
+      //   if (!isMatch) { return res.sendStatus(403); }
+      //   const token = jwt.sign({ user: user }, process.env.SECRET_TOKEN); // , { expiresIn: 10 } seconds
+      //   res.status(200).json({ token: token });
+      // });
     });
   }
 

@@ -19,7 +19,9 @@ export class UserService {
   login(credentials): Observable<any> {
     return this.http.post('/api/login', JSON.stringify(credentials), this.options);
   }
-
+  forgot(email): Observable<any> {
+    return this.http.post('/api/forgot', JSON.stringify(email), this.options);
+  }
   getUsers(): Observable<any> {
     return this.http.get('/api/users').map(res => res.json());
   }

@@ -13,6 +13,9 @@
         <input class="form-control" type="password" name="password" formControlName="password" placeholder="Password">
       </div>
       <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid"><i class="fa fa-sign-in"></i> Login</button>
+      <button  class="btn btn-primary" type="button" routerLink="/forgot" routerLinkActive="active">
+        <i class="fa fa-sign-in"></i> Forgot Password
+      </button>
     </form>
   </div>
 </div>

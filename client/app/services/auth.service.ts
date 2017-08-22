@@ -32,6 +32,16 @@ export class AuthService {
       }
     );
   }
+  forgot(email) {
+    return this.userService.forgot(email).map(res => res.json()).map(
+      res => {
+       // localStorage.setItem('token', res.token);
+       // const decodedUser = this.decodeUserFromToken(res.token);
+      //  this.setCurrentUser(decodedUser);
+        return res.message;
+      }
+    );
+  }
 
   logout() {
     localStorage.removeItem('token');

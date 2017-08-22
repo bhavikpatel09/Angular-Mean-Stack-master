@@ -47,5 +47,11 @@ export class LoginComponent implements OnInit {
       error => this.toast.setMessage('invalid email or password!', 'danger')
     );
   }
+  forgot() {
+    this.auth.forgot(this.forgotForm.value).subscribe(
+      res => this.router.navigate(['/']),
+      error => this.toast.setMessage('invalid email!', 'danger')
+    );
+  }
 
 }
