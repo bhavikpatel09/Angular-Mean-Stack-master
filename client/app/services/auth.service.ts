@@ -3,12 +3,13 @@ import { Router } from '@angular/router';
 import { JwtHelper } from 'angular2-jwt';
 
 import { UserService } from '../services/user.service';
+import { UserModel } from '../models/user-model';
 
 @Injectable()
 export class AuthService {
   loggedIn = false;
   isAdmin = false;
-
+  numRandomed: any;
   jwtHelper: JwtHelper = new JwtHelper();
 
   currentUser = { _id: '', username: '', role: '' };
@@ -21,7 +22,24 @@ export class AuthService {
       this.setCurrentUser(decodedUser);
     }
   }
+forgot(email) {
 
+var userModel = new UserModel();
+this.numRandomed = Math.floor(Math.random()*(100000-200000+1)+100000);
+userModel.email = email;
+userModel.password =this.numRandomed;
+
+
+    
+    return this.userService.forgot(userModel).map(res => res.json()).map(
+      res => {
+       // localStorage.setItem('token', res.token);
+       // const decodedUser = this.decodeUserFromToken(res.token);
+      //  this.setCurrentUser(decodedUser);
+        return res.message;
+      }
+    );
+  }
   login(emailAndPassword) {
     return this.userService.login(emailAndPassword).map(res => res.json()).map(
       res => {
@@ -29,16 +47,6 @@ export class AuthService {
         const decodedUser = this.decodeUserFromToken(res.token);
         this.setCurrentUser(decodedUser);
         return this.loggedIn;
-      }
-    );
-  }
-  forgot(email) {
-    return this.userService.forgot(email).map(res => res.json()).map(
-      res => {
-       // localStorage.setItem('token', res.token);
-       // const decodedUser = this.decodeUserFromToken(res.token);
-      //  this.setCurrentUser(decodedUser);
-        return res.message;
       }
     );
   }

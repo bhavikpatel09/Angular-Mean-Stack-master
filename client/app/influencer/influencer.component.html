@@ -26,13 +26,14 @@
   <router-outlet></router-outlet>
 
 </div>-->
-<div class="">
 
-    <ul class="menu">
-	<li><img src="../images/inocove-logosm.png"></li>
-	<li><a routerLink="/influencer" routerLinkActive="active">Influencer</a></li>
-	<li><a routerLink="/brands" routerLinkActive="active">Brands</a></li>
-	</ul>
-  <router-outlet></router-outlet>
+
+<div class="row" style="margin: 0 auto;    padding: 100;    height: 50px;    width: 80%;    display: block;  ">
+ <div class="col-md-6">
+   <button class="btn btn-primary" routerLink="/login" routerLinkActive="active" *ngIf="!auth.loggedIn">   <i class="fa fa-sign-in"></i> Login</button>
+
+   </div>
+<div class="col-md-6">
+  <button class="btn btn-primary" routerLink="/register" routerLinkActive="active" *ngIf="!auth.loggedIn">    <i class="fa fa-user-plus"></i> Register</button>
+   </div>
 </div>
-

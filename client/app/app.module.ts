@@ -14,6 +14,9 @@ import { LogoutComponent } from './logout/logout.component';
 import { AccountComponent } from './account/account.component';
 import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+
+import { InfluencerComponent } from './influencer/influencer.component';
+import { BrandsComponent } from './brands/brands.component';
 import { ForgotComponent } from './forgot/forgot.component';
 
 @NgModule({
@@ -26,9 +29,14 @@ import { ForgotComponent } from './forgot/forgot.component';
     AccountComponent,
     AdminComponent,
     NotFoundComponent,
+
+    InfluencerComponent,
+
+    BrandsComponent,
+
     ForgotComponent
   ],
-  imports: [
+  imports: [  
     RoutingModule,
     SharedModule
   ],
@@ -36,7 +44,7 @@ import { ForgotComponent } from './forgot/forgot.component';
     AuthService,
     AuthGuardLogin,
     AuthGuardAdmin,
-    UserService
+    UserService 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
