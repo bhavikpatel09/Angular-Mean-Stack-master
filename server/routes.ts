@@ -3,7 +3,6 @@ import * as express from 'express';
 
 import UserCtrl from './controllers/user';
 
-import User from './models/user';
 
 export default function setRoutes(app) {
 
@@ -14,6 +13,10 @@ export default function setRoutes(app) {
 
   // Users
   router.route('/login').post(userCtrl.login);
+  router.route('/facebook').post(userCtrl.facebook);
+  router.route('/twitter').post(userCtrl.twitter);
+  router.route('/facebook/callback').get(userCtrl.facebookCallback);
+  router.route('/twitter/callback').get(userCtrl.twitterCallback);
   router.route('/users').get(userCtrl.getAll);
   router.route('/users/count').get(userCtrl.count);
   router.route('/user').post(userCtrl.insert);

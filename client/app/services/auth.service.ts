@@ -32,6 +32,26 @@ export class AuthService {
       }
     );
   }
+  twitter(email) {
+      return this.userService.twitter(email).map(res => res.json()).map(
+          res => {
+              //localStorage.setItem('token', res.token);
+             // const decodedUser = this.decodeUserFromToken(res.token);
+            //  this.setCurrentUser(decodedUser);
+              return this.loggedIn;
+          }
+      );
+  }
+  facebook(email) {
+      return this.userService.facebook(email).map(res => res.json()).map(
+          res => {
+             // localStorage.setItem('token', res.token);
+            //  const decodedUser = this.decodeUserFromToken(res.token);
+            //  this.setCurrentUser(decodedUser);
+              return this.loggedIn;
+          }
+      );
+  }
 
   logout() {
     localStorage.removeItem('token');
@@ -47,11 +67,11 @@ export class AuthService {
 
   setCurrentUser(decodedUser) {
     this.loggedIn = true;
-    this.currentUser._id = decodedUser._id;
-    this.currentUser.username = decodedUser.username;
-    this.currentUser.role = decodedUser.role;
-    decodedUser.role === 'admin' ? this.isAdmin = true : this.isAdmin = false;
-    delete decodedUser.role;
+   // this.currentUser._id = decodedUser._id;
+   // this.currentUser.username = decodedUser.username;
+   // this.currentUser.role = decodedUser.role;
+   // decodedUser.role === 'admin' ? this.isAdmin = true : this.isAdmin = false;
+  //  delete decodedUser.role;
   }
 
 }

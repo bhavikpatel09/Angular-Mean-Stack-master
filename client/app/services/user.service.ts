@@ -19,6 +19,12 @@ export class UserService {
   login(credentials): Observable<any> {
     return this.http.post('/api/login', JSON.stringify(credentials), this.options);
   }
+  twitter(email): Observable<any> {
+      return this.http.post('/api/twitter', email, this.options);
+  }
+  facebook(email): Observable<any> {
+      return this.http.post('/api/facebook', email, this.options);
+  }
 
   getUsers(): Observable<any> {
     return this.http.get('/api/users').map(res => res.json());

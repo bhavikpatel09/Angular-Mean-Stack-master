@@ -1,5 +1,4 @@
 <app-toast [message]="toast.message"></app-toast>
-
 <div class="card">
   <h4 class="card-header">Login</h4>
   <div class="card-block">
@@ -14,5 +13,17 @@
       </div>
       <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid"><i class="fa fa-sign-in"></i> Login</button>
     </form>
+    <br />
+    <form (ngSubmit)="facebooklogin()">
+      <h3>Facebook Login Form:</h3>
+      <button class="btn btn-primary" type="submit"><span class="fa fa-facebook"></span> Facebook</button>
+    </form>
+    <!--<button type="button" (click)="twitter()">Twit</button>-->
+    <form (ngSubmit)="twitterlogin()">
+      <h3>Twitter Login Form:</h3>
+      <button class="btn btn-info" type="submit" ><span class="fa fa-twitter"></span> Twitter</button>
+    </form>
+    <!--<a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
+    <a href="/auth/twitter" class="btn btn-info"><span class="fa fa-twitter"></span> Twitter</a>-->
   </div>
 </div>

@@ -47,5 +47,20 @@ export class LoginComponent implements OnInit {
       error => this.toast.setMessage('invalid email or password!', 'danger')
     );
   }
-
+ 
+  twitterlogin() {
+      debugger
+      var email = 'bhavik@gmail.com';
+      this.auth.twitter(email).subscribe(
+          res => this.router.navigate(['/']),
+          error => this.toast.setMessage('invalid email or password!', 'danger')
+      );
+  }
+  facebooklogin() {
+      var email = 'patel@gmail.com';
+      this.auth.facebook(email).subscribe(
+          res => this.router.navigate(['/']),
+          error => this.toast.setMessage('invalid email or password!', 'danger')
+      );
+  }
 }

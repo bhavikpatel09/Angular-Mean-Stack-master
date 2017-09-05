@@ -1,5 +1,6 @@
 import * as dotenv from 'dotenv';
 import * as jwt from 'jsonwebtoken';
+import * as passport from 'passport';
 
 import User from '../models/user';
 import BaseCtrl from './base';
@@ -17,5 +18,27 @@ export default class UserCtrl extends BaseCtrl {
       });
     });
   }
+  facebook = (req, res) => {
+      debugger;
+      passport.authenticate('facebook', { scope: 'email' });
+      res.status(200).json({ token: '' });
+  }
+  facebookCallback = (req, res) => {
+      passport.authenticate('facebook', {
+          successRedirect: '/profile',
+          failureRedirect: '/'
+      });
+  }
 
+  twitter = (req, res) => {
+      debugger;
+      passport.authenticate('twitter');
+      res.status(200).json({ token: '' });
+  }
+  twitterCallback = (req, res) => {
+      passport.authenticate('twitter', {
+          successRedirect: '/profile',
+          failureRedirect: '/'
+      });
+  }
 }
